@@ -7,6 +7,8 @@ import Image from "next/image";
 import { getUserProfile } from "../actions/user-actions";
 import BorderedButton from "@/components/BorderedButton";
 import Link from "next/link";
+import LogoutButton from "@/components/LogoutButton";
+import { LogOut } from "lucide-react";
 
 export default async function Profile() {
     const data = await getUserProfile();
@@ -26,6 +28,7 @@ export default async function Profile() {
                             <Link href="process/cadastro">
                                 <BorderedButton title="Cadastrar Processo" />
                             </Link>
+                            <LogoutButton title="Sair" />
                         </div>
                     </div>
                     <div>
