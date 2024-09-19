@@ -3,18 +3,19 @@
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 
-export async function createPost(formData: FormData){
-    const post = {
-        text: formData.get('text'),
+export async function createProcess(formData: FormData){
+    const varprocess = {
+        name: formData.get('name'),
+        process: formData.get('process'),
     }
 
-    const response = await fetch(`${process.env.BASE_API_URL}/posts`, {
+    const response = await fetch(`${process.env.BASE_API_URL}/process`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${cookies().get('token')?.value}`
         },
-        body: JSON.stringify(post),
+        body: JSON.stringify(varprocess),
     })
 
     if(response.status === 403){

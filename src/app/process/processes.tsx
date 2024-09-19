@@ -10,12 +10,12 @@ import { Frown } from "lucide-react";
 export function Processes({ initialProcesses }: { initialProcesses: Process[] }) {
     console.log(initialProcesses);
     if (initialProcesses.length === 0) console.log('no processes');
-    const [processes, setProcesses] = useState<Process[]>(initialProcesses);
-    const [page, setPage] = useState(0);
+    const [processes, setProcesses] = useState<Process[]>([]);
+    const [page, setPage] = useState(1); // quando coloca 0, ele aparece duplicado a primneira paginação
 
     useEffect(() => {
         setProcesses(initialProcesses);
-    }, [initialProcesses]);
+    }, []);
 
     async function loadMore() {
         const newProcesses = await getProcesses(page);

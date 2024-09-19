@@ -34,8 +34,8 @@ export default function Login() {
     return (
         <>
             <main className="bg-black h-screen flex" style={{ background: 'var(--Sun-500, #9249FF)', boxShadow: '0px 300px 190px 0px #650FC8 inset' }}>
-                <aside className="h-screen hidden lg:block w-1/2">
-                    <Image src="/login.png" alt="login" width={4096} height={2732} />
+                <aside className="h-screen hidden lg:block w-1/2 overflow-hidden">
+                    <Image src="/login.png" alt="login" width={4096} height={2732} className="object-cover h-full w-full" />
                 </aside>
                 <div className="flex flex-col justify-center items-center m-auto gap-[3.75rem]">
                     <Image src="/logo.png" alt="logo" width={1841} height={343} className="w-[24.2rem] h-[4.6rem]" />

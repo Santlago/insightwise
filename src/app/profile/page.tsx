@@ -8,8 +8,9 @@ import { getUserProfile, uploadAvatar } from "../actions/user-actions";
 import BorderedButton from "@/components/BorderedButton";
 import Link from "next/link";
 import LogoutButton from "@/components/LogoutButton";
-import { LogOut } from "lucide-react";
+import { ArrowUpFromLine, LogOut } from "lucide-react";
 import { redirect } from "next/navigation";
+import { useState } from "react";
 
 export default async function Profile() {
 
@@ -19,7 +20,7 @@ export default async function Profile() {
         "use server"
         const success = await uploadAvatar(formData)
         if (!success) {
-            console.log('Erro ao enviar') //pode ser un toast depois
+            console.log('Erro ao enviar')
         }
         redirect('/profile')
 
@@ -34,14 +35,24 @@ export default async function Profile() {
                     <div className="flex flex-col gap-[3.19rem] items-center">
                         <img src={data.avatar} alt="avatar" className="w-[10rem] h-[10rem] rounded-[20rem]" />
                         <div className="flex flex-col gap-[1rem] justify-center">
-                            <form action={handleUpload} className="flex items-center">
-                                <div>
-                                    <p>Atualizar Avatar</p>
-                                    <Input type="file" name="file" id="file" isRequired />
-                                </div>
-                                <Button variant="bordered" type="submit" color="default" className="text-white font-bold text-[1rem]">Enviar</Button>
-                            </form>
-                            <BorderedButton title="Alterar Avatar" />
+                            <Card>
+                                <CardBody>
+                                    <form action={handleUpload} className="flex items-center">
+                                        <div>
+                                            <p>Atualizar Avatar</p>
+                                            <Input
+                                                type="file"
+                                                name="file"
+                                                id="file"
+                                                isRequired
+                                                endContent={
+                                                    <Button type="submit" color="primary" className="text-white font-bold text-[1rem]">Enviar</Button>
+                                                } />
+                                        </div>
+                                    </form>
+
+                                </CardBody>
+                            </Card>
                             <Link href="/process">
                                 <BorderedButton title="Processos Cadastrados" />
                             </Link>

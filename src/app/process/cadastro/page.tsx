@@ -1,3 +1,4 @@
+import { createProcess } from "@/app/actions/process-actions";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { Button } from "@nextui-org/button";
@@ -14,9 +15,11 @@ export default function Cadastro() {
                     <div className="flex justify-center">
                         <Card className="w-[30rem]">
                             <CardBody className="flex flex-col gap-[2rem]">
-                                <Input label="Nome" isRequired placeholder="Nome do processo" />
-                                <Input label="Processo" isRequired placeholder="Processo" />
-                                <Button color="primary">Cadastrar</Button>
+                                <form action={createProcess}>
+                                    <Input label="Nome" name="name" isRequired placeholder="Nome do processo" />
+                                    <Input label="Processo" name="process" isRequired placeholder="Processo" />
+                                    <Button color="primary" type="submit">Cadastrar</Button>
+                                </form>
                             </CardBody>
                         </Card>
                     </div>
