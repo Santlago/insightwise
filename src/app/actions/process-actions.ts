@@ -8,7 +8,7 @@ export async function createPost(formData: FormData){
         text: formData.get('text'),
     }
 
-    const response = await fetch('http://localhost:8080/posts', {
+    const response = await fetch(`${process.env.BASE_API_URL}/posts`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ export async function createPost(formData: FormData){
 }
 
 export async function getProcesses(page: number = 0){
-    const response = await fetch(`http://localhost:8080/process?page=${page}`, {
+    const response = await fetch(`${process.env.BASE_API_URL}/process?page=${page}`, {
         headers: {
             "Authorization": `Bearer ${cookies().get('token')?.value}`
         }

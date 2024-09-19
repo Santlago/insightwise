@@ -14,7 +14,7 @@ export async function createUser(prevState: any, formData: FormData) {
     }
     console.log("Sending user data to backend:", JSON.stringify(user)) // Log the JSON data
 
-    const response = await fetch('http://localhost:8080/users', {
+    const response = await fetch(`${process.env.BASE_API_URL}/users`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ export async function login(prevState: any, formData: FormData) {
         password: formData.get('password'),
     }
 
-    const response = await fetch('http://localhost:8080/login', {
+    const response = await fetch(`${process.env.BASE_API_URL}/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ export async function login(prevState: any, formData: FormData) {
 }
 
 export async function getUserProfile() {
-    const response = await fetch('http://localhost:8080/users/profile', {
+    const response = await fetch(`${process.env.BASE_API_URL}/users/profile`, {
         headers: {
             'Authorization': `Bearer ${cookies().get('token')?.value}`
         }
@@ -105,7 +105,7 @@ export async function updateUser(prevState: any, formData: FormData) {
         email: formData.get('email'),
     }
 
-    const response = await fetch('http://localhost:8080/users', {
+    const response = await fetch(`${process.env.BASE_API_URL}/users`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -137,7 +137,7 @@ export async function updateUser(prevState: any, formData: FormData) {
 }
 
 export async function uploadAvatar(formData: FormData) {
-    const response = await fetch('http://localhost:8082/users/avatar', {
+    const response = await fetch(`${process.env.BASE_API_URL}/users/avatar`, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${cookies().get('token')?.value}`
@@ -161,7 +161,7 @@ export async function uploadAvatar(formData: FormData) {
 }
 
 export async function searchUsers(name: string) {
-    const response = await fetch(`http://localhost:8082/users?name=${name}`, {
+    const response = await fetch(`${process.env.BASE_API_URL}/users?name=${name}`, {
         headers: {
             "Authorization": `Bearer ${cookies().get('token')?.value}`
         }

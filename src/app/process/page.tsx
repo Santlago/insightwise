@@ -11,8 +11,8 @@ export default async function Home() {
         <>
             <main>
                 <Header />
-                <div className="h-screen">
-                    <h1 className="text-[#7913EE] font-semibold text-[2rem] text-center mt-[6rem] mb-[4rem]">Processos Cadastrados</h1>
+                <div className="min-h-screen pb-[2rem]">
+                    <h1 className="text-[#7913EE] font-semibold text-[2rem] text-center pt-[6rem] pb-[4rem]">Processos Cadastrados</h1>
                     <div className="px-[10rem]">
                         <Processes initialProcesses={processes} />
                     </div>

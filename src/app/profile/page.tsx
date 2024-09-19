@@ -4,23 +4,43 @@ import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import { Input } from "@nextui-org/react";
 import { cookies } from "next/headers";
 import Image from "next/image";
-import { getUserProfile } from "../actions/user-actions";
+import { getUserProfile, uploadAvatar } from "../actions/user-actions";
 import BorderedButton from "@/components/BorderedButton";
 import Link from "next/link";
 import LogoutButton from "@/components/LogoutButton";
 import { LogOut } from "lucide-react";
+import { redirect } from "next/navigation";
 
 export default async function Profile() {
+
     const data = await getUserProfile();
+
+    async function handleUpload(formData: FormData) {
+        "use server"
+        const success = await uploadAvatar(formData)
+        if (!success) {
+            console.log('Erro ao enviar') //pode ser un toast depois
+        }
+        redirect('/profile')
+
+    }
+
     return (
         <>
             <Header />
             <main className="bg-black h-screen flex flex-col items-center gap-[7.5rem]" style={{ background: "var(--Sun-500, #9249FF)", boxShadow: "0px 300px 190px 0px #650FC8 inset" }}>
                 <h1 className="font-bold text-[2rem] pt-[4rem]">Perfil da Empresa</h1>
                 <div className="flex gap-[3.81rem] items-center">
-                    <div className="flex flex-col gap-[3.19rem]">
-                        <img src={data.avatar} alt="avatar" />
-                        <div className="flex flex-col gap-[1rem]">
+                    <div className="flex flex-col gap-[3.19rem] items-center">
+                        <img src={data.avatar} alt="avatar" className="w-[10rem] h-[10rem] rounded-[20rem]" />
+                        <div className="flex flex-col gap-[1rem] justify-center">
+                            <form action={handleUpload} className="flex items-center">
+                                <div>
+                                    <p>Atualizar Avatar</p>
+                                    <Input type="file" name="file" id="file" isRequired />
+                                </div>
+                                <Button variant="bordered" type="submit" color="default" className="text-white font-bold text-[1rem]">Enviar</Button>
+                            </form>
                             <BorderedButton title="Alterar Avatar" />
                             <Link href="/process">
                                 <BorderedButton title="Processos Cadastrados" />
