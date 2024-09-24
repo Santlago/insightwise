@@ -29,7 +29,7 @@ export default async function Profile() {
     return (
         <>
             <Header />
-            <main className="bg-black h-screen flex flex-col items-center gap-[7.5rem]" style={{ background: "var(--Sun-500, #9249FF)", boxShadow: "0px 300px 190px 0px #650FC8 inset" }}>
+            <main className="min-h-screen flex flex-col items-center gap-[7.5rem] pb-[5rem]" style={{ background: "var(--Sun-500, #9249FF)", boxShadow: "0px 300px 190px 0px #650FC8 inset" }}>
                 <h1 className="font-bold text-[2rem] pt-[4rem]">Perfil da Empresa</h1>
                 <div className="flex gap-[3.81rem] items-center">
                     <div className="flex flex-col gap-[3.19rem] items-center">

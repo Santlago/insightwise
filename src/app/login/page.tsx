@@ -26,7 +26,7 @@ const loginInitialState = {
 export default function Login() {
 
     const [selected, setSelected] = useState("login");
-
+    const [isLoading, setIsLoading] = useState(false);
     
     const [ state, handleSubmit ] = useFormState(createUser, initialState)
     const [loginState, formAction] = useFormState(login, loginInitialState)
@@ -60,7 +60,7 @@ export default function Login() {
                                             type="password"
                                         />
                                         <div className="flex gap-2 justify-end">
-                                            <Button fullWidth type="submit" color="primary">
+                                            <Button fullWidth type="submit" color="primary" onClick={() => setIsLoading(true)}>
                                                 Login
                                             </Button>
                                         </div>

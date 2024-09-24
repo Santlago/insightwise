@@ -14,8 +14,8 @@ export default function Cadastro() {
                     <h1 className="text-[#7913EE] font-semibold text-[2rem] text-center mt-[6rem] mb-[4rem]">Cadastrar processo</h1>
                     <div className="flex justify-center">
                         <Card className="w-[30rem]">
-                            <CardBody className="flex flex-col gap-[2rem]">
-                                <form action={createProcess}>
+                            <CardBody className="flex flex-col">
+                                <form action={createProcess} className="flex flex-col gap-[.8rem]">
                                     <Input label="Nome" name="name" isRequired placeholder="Nome do processo" />
                                     <Input label="Processo" name="process" isRequired placeholder="Processo" />
                                     <Button color="primary" type="submit">Cadastrar</Button>
