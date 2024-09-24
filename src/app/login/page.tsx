@@ -8,7 +8,7 @@ import { CheckIcon, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { use, useState } from "react";
-import { useFormState } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 import { createUser, login } from "../actions/user-actions";
 
 const initialState = {
@@ -26,7 +26,7 @@ const loginInitialState = {
 export default function Login() {
 
     const [selected, setSelected] = useState("login");
-    const [isLoading, setIsLoading] = useState(false);
+    const { pending } = useFormStatus()
     
     const [ state, handleSubmit ] = useFormState(createUser, initialState)
     const [loginState, formAction] = useFormState(login, loginInitialState)
@@ -60,7 +60,7 @@ export default function Login() {
                                             type="password"
                                         />
                                         <div className="flex gap-2 justify-end">
-                                            <Button fullWidth type="submit" color="primary" onClick={() => setIsLoading(true)}>
+                                            <Button fullWidth type="submit" color="primary" isLoading={pending}>
                                                 Login
                                             </Button>
                                         </div>

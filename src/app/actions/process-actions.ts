@@ -3,7 +3,7 @@
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 
-export async function createProcess(formData: FormData){
+export async function createProcess(prevState: any, formData: FormData){
     const varprocess = {
         name: formData.get('name'),
         process: formData.get('process'),
@@ -18,11 +18,19 @@ export async function createProcess(formData: FormData){
         body: JSON.stringify(varprocess),
     })
 
-    if(response.status === 403){
-        redirect('/')
-    }
+    if (!response.ok) {
+        return {
+            success: false,
+            name: varprocess.name,
+            process: varprocess.process,
+        }
+    } 
 
-    return await response.json()
+    return {
+        success: true,
+        name: '',
+        process: '',
+    }
  
 }
 

@@ -44,6 +44,8 @@ export async function createUser(prevState: any, formData: FormData) {
 
 export async function login(prevState: any, formData: FormData) {
 
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
     const user = {
         email: formData.get('email'),
         password: formData.get('password'),

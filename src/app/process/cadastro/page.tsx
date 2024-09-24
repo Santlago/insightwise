@@ -1,11 +1,24 @@
+"use client"
+
 import { createProcess } from "@/app/actions/process-actions";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody } from "@nextui-org/card";
 import { Input } from "@nextui-org/input";
+import { CheckIcon } from "lucide-react";
+import { useFormState } from "react-dom";
+
+const initialState = {
+    success: false,
+    name: '',
+    process: '',
+}
 
 export default function Cadastro() {
+
+    const [state, handleSubmit] = useFormState(createProcess, initialState)
+
     return (
         <>
             <main>
@@ -15,10 +28,16 @@ export default function Cadastro() {
                     <div className="flex justify-center">
                         <Card className="w-[30rem]">
                             <CardBody className="flex flex-col">
-                                <form action={createProcess} className="flex flex-col gap-[.8rem]">
+                                <form action={handleSubmit} className="flex flex-col gap-[.8rem]">
                                     <Input label="Nome" name="name" isRequired placeholder="Nome do processo" />
                                     <Input label="Processo" name="process" isRequired placeholder="Processo" />
                                     <Button color="primary" type="submit">Cadastrar</Button>
+                                    {state.success &&
+                                        <div className="flex gap-2 items-center text-green-500">
+                                            <CheckIcon size={24} />
+                                            <span>Process created successfully</span>
+                                        </div>
+                                    }
                                 </form>
                             </CardBody>
                         </Card>
