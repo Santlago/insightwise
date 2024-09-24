@@ -9,6 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^6.1.1",
+    "@mui/x-charts": "^7.18.0",
     "@nextui-org/button": "^2.0.38",
     "@nextui-org/card": "^2.0.34",
     "@nextui-org/divider": "^2.0.32",
