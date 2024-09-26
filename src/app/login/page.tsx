@@ -10,6 +10,7 @@ import Link from "next/link";
 import { use, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { createUser, login } from "../actions/user-actions";
+import { SubmitButton } from "@/components/SubmitButton";
 
 const initialState = {
     success: false,
@@ -28,7 +29,7 @@ export default function Login() {
     const [selected, setSelected] = useState("login");
     const { pending } = useFormStatus()
     
-    const [ state, handleSubmit ] = useFormState(createUser, initialState)
+    const [ state, handleSubmit, isPending ] = useFormState(createUser, initialState)
     const [loginState, formAction] = useFormState(login, loginInitialState)
     
     return (
@@ -59,10 +60,8 @@ export default function Login() {
                                             placeholder="Enter your password"
                                             type="password"
                                         />
-                                        <div className="flex gap-2 justify-end">
-                                            <Button fullWidth type="submit" color="primary" isLoading={pending}>
-                                                Login
-                                            </Button>
+                                        <div className="flex gap-2">
+                                            <SubmitButton title="Login"/>
                                         </div>
                                         {loginState.message &&
                                             <div className="flex gap-2 items-center text-red-500">
@@ -85,9 +84,7 @@ export default function Login() {
                                         />
                                         <Input isRequired name="cnpj" label="CNPJ" placeholder="Enter your CNPJ" />
                                         <div className="flex gap-2 justify-end">
-                                            <Button fullWidth type="submit" color="primary">
-                                                Sign up
-                                            </Button>
+                                            <SubmitButton title="Sign Up"/>
                                         </div>
                                         {state.success &&
                                             <div className="flex gap-2 items-center text-green-500">
