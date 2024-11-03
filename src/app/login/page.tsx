@@ -11,6 +11,7 @@ import { use, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { createUser, login } from "../actions/user-actions";
 import { SubmitButton } from "@/components/SubmitButton";
+import { NODE_BASE_ESM_RESOLVE_OPTIONS } from "next/dist/build/webpack-config";
 
 const initialState = {
   success: false,
@@ -19,6 +20,7 @@ const initialState = {
   email: "",
   password: "",
 };
+console.log(process.env.BASE_API_URL);
 
 const loginInitialState = {
   message: "",
@@ -88,8 +90,30 @@ export default function Login() {
                       placeholder="Enter your password"
                       type="password"
                     />
-                    <div className="flex gap-2">
+                    <div className="flex flex-col  gap-2">
                       <SubmitButton title="Login" />
+                      <Button
+                        startContent={
+                          <Image
+                            alt="googlelogin"
+                            src="/google.png"
+                            width={20}
+                            height={20}
+                          />
+                        }
+                        onClick={() => {
+                          const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL;
+                          if (baseUrl) {
+                            window.location.href = `${baseUrl}/api/auth/google`;
+                          } else {
+                            console.error(
+                              "NEXT_PUBLIC_BASE_API_URL is not defined"
+                            );
+                          }
+                        }}
+                      >
+                        Login with Google
+                      </Button>
                     </div>
                     {loginState.message && (
                       <div className="flex gap-2 items-center text-red-500">
