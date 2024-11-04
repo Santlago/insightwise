@@ -20,7 +20,7 @@ const initialState = {
   email: "",
   password: "",
 };
-console.log(process.env.BASE_API_URL);
+console.log(process.env.NEXT_PUBLIC_BASE_API_URL);
 
 const loginInitialState = {
   message: "",
@@ -102,12 +102,12 @@ export default function Login() {
                           />
                         }
                         onClick={() => {
-                          const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL;
+                          const baseUrl = process.env.NEXT_PUBLIC_NEXT_PUBLIC_BASE_API_URL;
                           if (baseUrl) {
                             window.location.href = `${baseUrl}/api/auth/google`;
                           } else {
                             console.error(
-                              "NEXT_PUBLIC_BASE_API_URL is not defined"
+                              "NEXT_PUBLIC_NEXT_PUBLIC_BASE_API_URL is not defined"
                             );
                           }
                         }}

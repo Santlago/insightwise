@@ -14,7 +14,7 @@ export async function createUser(prevState: any, formData: FormData) {
     }
     console.log("Sending user data to backend:", JSON.stringify(user)) // Log the JSON data
 
-    const response = await fetch(`${process.env.BASE_API_URL}/users`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/users`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ export async function createUser(prevState: any, formData: FormData) {
             email: user.email,
             password: user.password,
         }
-    } 
+    }
 
     return {
         success: true,
@@ -51,7 +51,7 @@ export async function login(prevState: any, formData: FormData) {
         password: formData.get('password'),
     }
 
-    const response = await fetch(`${process.env.BASE_API_URL}/login`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ export async function login(prevState: any, formData: FormData) {
         return {
             message: "Acesso negado"
         }
-    } 
+    }
 
     const data= await response.json()
     cookies().set('token', data.token)
@@ -80,7 +80,7 @@ export async function login(prevState: any, formData: FormData) {
 }
 
 export async function getUserProfile() {
-    const response = await fetch(`${process.env.BASE_API_URL}/users/profile`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/users/profile`, {
         headers: {
             'Authorization': `Bearer ${cookies().get('token')?.value}`
         }
@@ -89,7 +89,7 @@ export async function getUserProfile() {
     if (response.status === 403) {
         redirect('/')
     }
-    
+
     const json = await response.json()
     return {
         name: json.name,
@@ -107,7 +107,7 @@ export async function updateUser(prevState: any, formData: FormData) {
         email: formData.get('email'),
     }
 
-    const response = await fetch(`${process.env.BASE_API_URL}/users`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/users`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -139,7 +139,7 @@ export async function updateUser(prevState: any, formData: FormData) {
 }
 
 export async function uploadAvatar(formData: FormData) {
-    const response = await fetch(`${process.env.BASE_API_URL}/users/avatar`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/users/avatar`, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${cookies().get('token')?.value}`
@@ -163,7 +163,7 @@ export async function uploadAvatar(formData: FormData) {
 }
 
 export async function searchUsers(name: string) {
-    const response = await fetch(`${process.env.BASE_API_URL}/users?name=${name}`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/users?name=${name}`, {
         headers: {
             "Authorization": `Bearer ${cookies().get('token')?.value}`
         }

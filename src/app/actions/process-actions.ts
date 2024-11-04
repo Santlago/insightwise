@@ -9,7 +9,7 @@ export async function createProcess(prevState: any, formData: FormData){
         process: formData.get('process'),
     }
 
-    const response = await fetch(`${process.env.BASE_API_URL}/process`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/process`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -24,18 +24,18 @@ export async function createProcess(prevState: any, formData: FormData){
             name: varprocess.name,
             process: varprocess.process,
         }
-    } 
+    }
 
     return {
         success: true,
         name: '',
         process: '',
     }
- 
+
 }
 
 export async function getProcesses(page: number = 0){
-    const response = await fetch(`${process.env.BASE_API_URL}/process?page=${page}`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/process?page=${page}`, {
         headers: {
             "Authorization": `Bearer ${cookies().get('token')?.value}`
         }
