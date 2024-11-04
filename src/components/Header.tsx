@@ -17,9 +17,6 @@ export default function Header() {
                     <Link href="/relatorio">
                         Relatório
                     </Link>
-                    <Link href="/analise">
-                        Análise individual
-                    </Link>
                     <Link href="/about">
                         Sobre nós
                     </Link>
